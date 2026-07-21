@@ -2,3 +2,5 @@ venv/
 *.csv 
 
 !data/orginal_data/all_months_clean.csv
+
+*.pyc
