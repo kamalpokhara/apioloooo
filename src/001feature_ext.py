@@ -1,7 +1,7 @@
 import pandas as pd, numpy as np
 
-all_months_file = "../data/orginal_data/all_months_clean.csv"
-d = pd.read_csv(all_months_file)
+all_months_file = "../data/orginal_data/all_months_clean.xlsx"
+d = pd.read_excel(all_months_file)
 
 d.columns = [c.lower() for c in d.columns]
 d = d.sort_values(['product_name', 'month_idx']).reset_index(drop=True)
@@ -94,7 +94,7 @@ print(f"Total After Fix: {len(unique_products)}")
 
 
 
-d.to_parquet('../data/processed/market_data_clean_v1.parquet', index=False)
+d.to_parquet('../data/processed/market_data_clean_v2.parquet', index=False)
 
 # import os
 # import matplotlib.pyplot as plt

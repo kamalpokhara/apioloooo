@@ -2,7 +2,7 @@ import pandas as pd
 import lightgbm as lgb
 import numpy as np
 
-file_path = "../data/processed/market_data_clean_v1.parquet"
+file_path = "../data/processed/market_data_clean_v2.parquet"
 d = pd.read_parquet(file_path)
 d = d.drop(columns=['naew'])
 d.columns = [c.lower() for c in d.columns]
@@ -20,8 +20,8 @@ exclude = ['product_name','category','bs_year','bs_month','month_idx','month_nam
            'reconciliation_gap','import_share','domestic_share','n_months_present','is_balanced',
            'india_share','china_share','bhutan_share','n_sources','herfindahl',
            'm_sin','m_cos','avg_price_lag1','volume_lag1']
+
 src_cols = [c for c in d.columns if c not in exclude]
-imp_cols = [c for c in ['india', 'china', 'bhutan'] if c in src_cols]
 
 feature_cols = (
     ['product_name', 'category', 'unit', 'm_sin', 'm_cos', 'n_sources',
@@ -30,11 +30,10 @@ feature_cols = (
     + src_cols
 )
 assert len(feature_cols) == len(set(feature_cols)), "duplicate columns in feature_cols"
-print(len(src_cols), "raw source columns — should be 33")
+print(len(src_cols), "should be 35, ")
+print('avg_price_lag1' in feature_cols)   # must be True now
 
 target_col = 'avg_price'
-
-
 print("\n Feature Columns: ", feature_cols)
 print("\n Target Column: ", target_col)
 
@@ -47,89 +46,90 @@ print("\n Target Column: ", target_col)
 
 # Cast categoricals properly LightGBM needs this explicit, don't let it infer
 
-cat_cols = ['product_name', 'category', 'unit']
-for df_ in [train, valid, test]:
-    for c in cat_cols:
-        df_[c] = df_[c].astype('category')
+# cat_cols = ['product_name', 'category', 'unit']
+# for df_ in [train, valid, test]:
+#     for c in cat_cols:
+#         df_[c] = df_[c].astype('category')
 
-print("\n",train[['product_name','category','unit']].dtypes)
+# print("\n",train[['product_name','category','unit']].dtypes)
 
-# TRAIN on train set, month 1-8 
-X_train, y_train = train[feature_cols].reset_index(drop=True), np.log1p(train[target_col]).reset_index(drop=True).values
-X_valid, y_valid = valid[feature_cols].reset_index(drop=True), np.log1p(valid[target_col]).reset_index(drop=True).values
-X_test,  y_test  = test[feature_cols].reset_index(drop=True),  np.log1p(test[target_col]).reset_index(drop=True).values
+# # TRAIN on train set, month 1-8 
+# X_train, y_train = train[feature_cols].reset_index(drop=True), np.log1p(train[target_col]).reset_index(drop=True).values
+# X_valid, y_valid = valid[feature_cols].reset_index(drop=True), np.log1p(valid[target_col]).reset_index(drop=True).values
+# X_test,  y_test  = test[feature_cols].reset_index(drop=True),  np.log1p(test[target_col]).reset_index(drop=True).values
 
-print("X_train columns:", X_train.columns.tolist())
-print("Categorical features:", cat_cols)
-print("Missing:", set(cat_cols) - set(X_train.columns))
+# print("X_train columns:", X_train.columns.tolist())
+# print("Categorical features:", cat_cols)
+# print("Missing:", set(cat_cols) - set(X_train.columns))
 
-import optuna
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+# import optuna
+# from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-def objective(trial):
-    params = {
-        'objective': 'regression_l1',
-        'num_leaves': trial.suggest_int('num_leaves', 15, 63),
-        'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.1, log=True),
-        'subsample': trial.suggest_float('subsample', 0.6, 1.0),
-        'reg_lambda': trial.suggest_float('reg_lambda', 0.0, 5.0),
-        'verbosity': -1,
-        'random_state': 42
-    }
-    train_set = lgb.Dataset(X_train, label=y_train, categorical_feature=cat_cols, free_raw_data=False)
-    valid_set = lgb.Dataset(X_valid, label=y_valid, reference=train_set, categorical_feature=cat_cols, free_raw_data=False)
+# def objective(trial):
+#     params = {
+#         'objective': 'regression_l1',
+#         'num_leaves': trial.suggest_int('num_leaves', 15, 63),
+#         'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.1, log=True),
+#         'subsample': trial.suggest_float('subsample', 0.6, 1.0),
+#         'reg_lambda': trial.suggest_float('reg_lambda', 0.0, 5.0),
+#         'verbosity': -1,
+#         'random_state': 42
+#     }
+#     train_set = lgb.Dataset(X_train, label=y_train, categorical_feature=cat_cols, free_raw_data=False)
+#     valid_set = lgb.Dataset(X_valid, label=y_valid, reference=train_set, categorical_feature=cat_cols, free_raw_data=False)
 
-    booster = lgb.train(
-        params,
-        train_set,
-        num_boost_round=1000,
-        valid_sets=[valid_set],
-        callbacks=[lgb.early_stopping(50, verbose=False)]
-    )
+#     booster = lgb.train(
+#         params,
+#         train_set,
+#         num_boost_round=1000,
+#         valid_sets=[valid_set],
+#         callbacks=[lgb.early_stopping(50, verbose=False)]
+#     )
 
-    pred = booster.predict(X_valid, num_iteration=booster.best_iteration)
-    mae = mean_absolute_error(y_valid, pred)
-    print(f"trial {trial.number}: MAE={mae:.4f}  params={params}")
-    return mae
+#     pred = booster.predict(X_valid, num_iteration=booster.best_iteration)
+#     mae = mean_absolute_error(y_valid, pred)
+#     print(f"trial {trial.number}: MAE={mae:.4f}  params={params}")
+#     return mae
 
 
-study = optuna.create_study(direction='minimize')
-study.optimize(objective, n_trials=30)
+# study = optuna.create_study(direction='minimize')
+# study.optimize(objective, n_trials=30)
 
-print("\nBEST:", study.best_params)
-print("BEST valid MAE (log scale):", study.best_value)
+# print("\nBEST:", study.best_params)
+# print("BEST valid MAE (log scale):", study.best_value)
 
-# ALL TRIALS AS SORTED TABLE
-trials_df = study.trials_dataframe()
-print(trials_df[['number','value','params_num_leaves','params_learning_rate',
-                  'params_subsample','params_reg_lambda']].sort_values('value'))
+# # ALL TRIALS AS SORTED TABLE
+# trials_df = study.trials_dataframe()
+# print(trials_df[['number','value','params_num_leaves','params_learning_rate',
+#                   'params_subsample','params_reg_lambda']].sort_values('value'))
 
-# ---- final retrain with best hyperparameters, evaluated properly ----
-best_params = study.best_params
-best_params.update({'objective': 'regression_l1', 'verbosity': -1, 'random_state': 42})
+# # ---- final retrain with best hyperparameters, evaluated properly ----
+# best_params = study.best_params
+# best_params.update({'objective': 'regression_l1', 'verbosity': -1, 'random_state': 42})
 
-train_set = lgb.Dataset(X_train, label=y_train, categorical_feature=cat_cols, free_raw_data=False)
-valid_set = lgb.Dataset(X_valid, label=y_valid, reference=train_set, categorical_feature=cat_cols, free_raw_data=False)
+# train_set = lgb.Dataset(X_train, label=y_train, categorical_feature=cat_cols, free_raw_data=False)
+# valid_set = lgb.Dataset(X_valid, label=y_valid, reference=train_set, categorical_feature=cat_cols, free_raw_data=False)
 
-booster = lgb.train(
-    best_params, train_set, num_boost_round=1000,
-    valid_sets=[valid_set],
-    callbacks=[lgb.early_stopping(50)]
-)
+# booster = lgb.train(
+#     best_params, train_set, num_boost_round=1000,
+#     valid_sets=[valid_set],
+#     callbacks=[lgb.early_stopping(50)]
+# )
 
-pred_valid_price = np.expm1(booster.predict(X_valid, num_iteration=booster.best_iteration))
-actual_valid_price = valid[target_col].values
+# pred_valid_price = np.expm1(booster.predict(X_valid, num_iteration=booster.best_iteration))
+# actual_valid_price = valid[target_col].values
 
-mae_valid_real = mean_absolute_error(actual_valid_price, pred_valid_price)
-print("Real valid MAE (price terms):", mae_valid_real)
+# mae_valid_real = mean_absolute_error(actual_valid_price, pred_valid_price)
+# print("Real valid MAE (price terms):", mae_valid_real)
 
-persist_valid = valid['avg_price_lag1'].fillna(train['avg_price'].mean())
-mae_persist_valid = mean_absolute_error(actual_valid_price, persist_valid)
-print("Persistence MAE (valid):", mae_persist_valid)
+# persist_valid = valid['avg_price_lag1'].fillna(train['avg_price'].mean())
+# mae_persist_valid = mean_absolute_error(actual_valid_price, persist_valid)
+# print("Persistence MAE (valid):", mae_persist_valid)
 
-print('\navg_price_lag1' in feature_cols)
-print('volume_lag1' in feature_cols)
-print("\n Feature Columns: ", feature_cols)
+# print('\navg_price_lag1' in feature_cols)
+# print('volume_lag1' in feature_cols)
+
+# print("\n Feature Columns: ", feature_cols)
 
 """ OLD CODE: LightGBM model training and evaluation code is commented out below."""
 # price_model = lgb.LGBMRegressor(
