@@ -9,15 +9,15 @@ def load_clean_data(path='../data/processed/market_data_clean_v2.parquet'):
     d = d.sort_values(['product_name', 'month_idx']).reset_index(drop=True)
     return d
 
-# exclude = ['product_name','category','bs_year','bs_month','month_idx','month_name',
-#            'volume','min_price','max_price','avg_price','unit','unit_canonical',
-#            'unit_changed','total_amount','volume_equals','total_sources',
-#            'reconciliation_gap','import_share','domestic_share','n_months_present','is_balanced',
-#            'india_share','china_share','bhutan_share','n_sources','herfindahl',
-#            'm_sin','m_cos','avg_price_lag1','volume_lag1']
+exclude = ['product_name','category','bs_year','bs_month','month_idx','month_name',
+           'volume','min_price','max_price','avg_price','unit','unit_canonical',
+           'unit_changed','total_amount','volume_equals','total_sources',
+           'reconciliation_gap','import_share','domestic_share','n_months_present','is_balanced',
+           'india_share','china_share','bhutan_share','n_sources','herfindahl',
+           'm_sin','m_cos','avg_price_lag1','volume_lag1']
 
-# def get_src_cols(d):
-#     return [c for c in d.columns if c not in exclude]
+def get_src_cols(d):
+    return [c for c in d.columns if c not in exclude]
 
 # def add_derived_features(df, src_cols, imp_cols):
 #     df = df.copy()
