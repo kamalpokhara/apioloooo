@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from features import load_clean_data, get_src_cols
 
-d = load_clean_data()   # loads v2
+d = load_clean_data()   # loads v2 from features.py 
 src_cols = get_src_cols(d)
 imp_cols = [c for c in ['india', 'china', 'bhutan'] if c in src_cols]
 

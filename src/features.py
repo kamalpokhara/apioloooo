@@ -19,6 +19,24 @@ exclude = ['product_name','category','bs_year','bs_month','month_idx','month_nam
 def get_src_cols(d):
     return [c for c in d.columns if c not in exclude]
 
+def compute_risk(df, product_vol_stats, scaling_ref):
+    df = df.copy()
+    df['volatility'] = (df['max_price'] - df['min_price']) / df['avg_price']
+    df['concentration'] = 1 / df['n_sources'].replace(0, np.nan)
+    df = df.merge(product_vol_stats, on='product_name', how='left')
+
+    def scale01_fixed(x, lo, hi):
+        return (x - lo) / (hi - lo + 1e-9)
+
+    signal_cols = ['volatility', 'import_share', 'concentration', 'volume_cv']
+    scaled = pd.DataFrame({
+        c: scale01_fixed(df[c], *scaling_ref[c]) for c in signal_cols
+    })
+    df['risk_score'] = scaled.mean(axis=1, skipna=True)
+    df['risk'] = pd.cut(df['risk_score'], bins=[-np.inf, 1/3, 2/3, np.inf], labels=['Low','Medium','High'])
+    return df
+
+
 # def add_derived_features(df, src_cols, imp_cols):
 #     df = df.copy()
 
