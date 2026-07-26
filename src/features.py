@@ -16,8 +16,11 @@ exclude = ['product_name','category','bs_year','bs_month','month_idx','month_nam
            'india_share','china_share','bhutan_share','n_sources','herfindahl',
            'm_sin','m_cos','avg_price_lag1','volume_lag1']
 
+cat_cols = ['product_name', 'category', 'unit']
+
 def get_src_cols(d):
     return [c for c in d.columns if c not in exclude]
+
 
 def compute_risk(df, product_vol_stats, scaling_ref):
     df = df.copy()
@@ -36,6 +39,36 @@ def compute_risk(df, product_vol_stats, scaling_ref):
     df['risk'] = pd.cut(df['risk_score'], bins=[-np.inf, 1/3, 2/3, np.inf], labels=['Low','Medium','High'])
     return df
 
+
+## add this to features.py — used ONLY inside rebuild(), never in the normal load path
+def add_derived_features(df, src_cols, imp_cols):
+    """ Use this function ONLY INSIDE rebuild() - never in the normal load path. 
+    It is used to recompute derived features on shocked data, which may have different 
+    source values than the original data. """
+    df = df.copy()
+
+    share_cols = [c + '_share' for c in src_cols]
+    stale = [c for c in share_cols + ['import_share','domestic_share','n_sources',
+              'herfindahl','m_sin','m_cos','total_sources'] if c in df.columns]
+    df = df.drop(columns=stale)   # remove the v2-baked-in versions before recomputing
+
+    df['total_sources'] = df[src_cols].sum(axis=1)
+    total_safe = df['total_sources'].replace(0, np.nan)
+
+    shares = df[src_cols].div(total_safe, axis=0).fillna(0)
+    shares.columns = share_cols
+    df = pd.concat([df, shares], axis=1)
+
+    df['import_share'] = df[imp_cols].sum(axis=1) / total_safe
+    df['domestic_share'] = 1 - df['import_share'].fillna(0)
+    df['import_share'] = df['import_share'].fillna(0)
+
+    df['n_sources'] = (df[src_cols] > 0).sum(axis=1)
+    df['herfindahl'] = (shares ** 2).sum(axis=1)
+
+    df['m_sin'] = np.sin(2 * np.pi * df['bs_month'] / 12)
+    df['m_cos'] = np.cos(2 * np.pi * df['bs_month'] / 12)
+    return df
 
 # def add_derived_features(df, src_cols, imp_cols):
 #     df = df.copy()
@@ -83,5 +116,3 @@ def compute_risk(df, product_vol_stats, scaling_ref):
 #     )
 #     assert len(cols) == len(set(cols)), "duplicate columns in feature_cols"
 #     return cols
-
-# cat_cols = ['product_name', 'category', 'unit']
