@@ -162,7 +162,65 @@ mean_pred_test = test['product_name'].map(prod_mean).fillna(train['avg_price'].m
 mae_mean_test = mean_absolute_error(actual_test_price, mean_pred_test)
 print(f"TEST Persistence MAE: {mae_persist_test:.2f}   Product-mean MAE: {mae_mean_test:.2f}   Model MAE: {mae_test:.2f}")
 
+import matplotlib.pyplot as plt
+## Test vs Actual Predicted Price Scatter Plot
+# fig, ax = plt.subplots(figsize=(7,7))
+# ax.scatter(actual_test_price, pred_test_price, alpha=0.6, edgecolor='k', linewidth=0.3)
+# lims = [0, max(actual_test_price.max(), pred_test_price.max())*1.05]
+# ax.plot(lims, lims, 'r--', linewidth=1, label='Perfect prediction')
+# ax.set_xlabel('Actual price'); ax.set_ylabel('Predicted price')
+# ax.set_title(f'Test set: Actual vs Predicted (R²={r2_test:.3f})')
+# ax.legend()
+# plt.tight_layout()
+# plt.savefig('../outputs/images/test_actual_vs_predicted_price.png', dpi=150)
+# plt.show()
 
+## Top 10 feature importances (price surrogate model)
+# importance = importance.sort_values(ascending=False).head(10)
+
+# fig, ax = plt.subplots(figsize=(8,6))
+# ax.barh(importance.index[::-1], importance.values[::-1], color='#2c7fb8')
+# ax.set_xlabel('Gain')
+# ax.set_title('Top 10 feature importances (price surrogate model)')
+# plt.tight_layout()
+# plt.savefig('../outputs/images/feature_importance_price_model.png', dpi=150)
+# plt.show()
+
+# comparison = pd.Series({
+#     'Model (LightGBM)': mae_test,
+#     'Persistence': mae_persist_test,
+#     'Product-mean': mae_mean_test
+# })
+# fig, ax = plt.subplots(figsize=(6,5))
+# bars = ax.bar(comparison.index, comparison.values, color=['#2c7fb8','#fdae61','#999999'])
+# ax.set_ylabel('MAE (NRs)')
+# ax.set_title('Test set MAE: model vs baselines')
+# for bar, val in zip(bars, comparison.values):
+#     ax.text(bar.get_x()+bar.get_width()/2, val+0.5, f'{val:.2f}', ha='center')
+# plt.tight_layout()
+# plt.savefig('../outputs/images/test_model_comparison_mae.png', dpi=150)
+# plt.show()
+
+# residuals = actual_test_price - pred_test_price
+# fig, ax = plt.subplots(figsize=(8,5))
+# ax.scatter(pred_test_price, residuals, alpha=0.6, edgecolor='k', linewidth=0.3)
+# ax.axhline(0, color='red', linestyle='--')
+# ax.set_xlabel('Predicted price'); ax.set_ylabel('Residual (actual − predicted)')
+# ax.set_title('Test set residuals')
+# plt.tight_layout()
+# plt.savefig('../outputs/images/test_residuals.png', dpi=150)
+# plt.show()
+# test_err = test[['category']].copy()
+# test_err['abs_error'] = np.abs(actual_test_price - pred_test_price)
+# cat_mae = test_err.groupby('category', observed=True)['abs_error'].mean().sort_values()
+
+# fig, ax = plt.subplots(figsize=(7,4))
+# ax.barh(cat_mae.index, cat_mae.values, color='#2c7fb8')
+# ax.set_xlabel('MAE (₹)')
+# ax.set_title('Test MAE by product category')
+# plt.tight_layout()
+# plt.savefig('../outputs/images/test_error_by_category.png', dpi=150)
+# plt.show()
 # # # saving model
 # # train model only from 1 - 8
 # booster.save_model('../models/price_surrogate_v1.txt')

@@ -1,3 +1,5 @@
+from itertools import product
+
 import pandas as pd
 import numpy as np
 
@@ -65,6 +67,13 @@ def run_product_scenario(d, product, changes, price_booster, feature_cols,
     pred_price = np.expm1(price_booster.predict(X))[0]
     pred_volume = shocked_row['total_sources'].values[0]
     risk_row = compute_risk(shocked_row, product_vol_stats, scaling_ref)
+    X_base = baseline_row[feature_cols].copy()
+
+    # NEW — model's own baseline prediction, for a fair shock comparison
+    X_base = baseline_row[feature_cols].copy()
+    for c in cat_cols:
+        X_base[c] = X_base[c].astype('category')
+    pred_baseline = np.expm1(price_booster.predict(X_base))[0]
 
     return {
         'product_name': product,
@@ -73,8 +82,9 @@ def run_product_scenario(d, product, changes, price_booster, feature_cols,
         'coverage': '; '.join(coverage_notes),
         'confidence': '; '.join(confidence_notes),
         'baseline_price': baseline_row['avg_price'].values[0],
+        'model_baseline_price': pred_baseline,        # ADD THIS
         'predicted_price': pred_price,
-        'price_delta_pct': (pred_price / baseline_row['avg_price'].values[0] - 1) * 100,
+        'price_delta_pct': (pred_price / pred_baseline - 1) * 100,
         'predicted_volume': pred_volume,
         'baseline_risk': baseline_risk_row['risk'].values[0],
         'baseline_risk_score': baseline_risk_row['risk_score'].values[0],
@@ -109,3 +119,23 @@ def confidence_tag(n_sourced):
         return 'low-confidence'
     else:
         return 'single-observation'
+
+# Scenario runner
+def run_scenario_report(d, changes, products=None, price_booster=None, feature_cols=None,
+                          cat_cols=None, product_vol_stats=None, scaling_ref=None,
+                          src_cols=None, imp_cols=None):
+    """
+    changes: dict, e.g. {'india': 0.7} or {'local': 1.2} or {'india': 0.7, 'local': 1.2}
+    products: list of product names, or None to run on ALL products in d
+    """
+    target_products = products if products is not None else d['product_name'].unique()
+
+    rows = []
+    for p in target_products:
+        result = run_product_scenario(d, p, changes, price_booster, feature_cols,
+                                        cat_cols, product_vol_stats, scaling_ref, src_cols, imp_cols)
+        rows.append(result)
+
+    results_df = pd.DataFrame(rows)
+    summary = aggregate_summary(results_df)
+    return results_df, summary

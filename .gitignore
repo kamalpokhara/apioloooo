@@ -4,3 +4,4 @@ venv/
 !data/orginal_data/all_months_clean.csv
 
 *.pyc
+__pycache__
