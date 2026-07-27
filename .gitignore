@@ -2,6 +2,10 @@ venv/
 *.csv 
 
 !data/orginal_data/all_months_clean.csv
+!outputs/scenario_china_zero.csv
+!outputs/scenario_india_minus30_local_plus20.csv
+!outputs/scenario_india_minus30.csv
+!outputs/scenario_local_plus20.csv
 
 *.pyc
 __pycache__

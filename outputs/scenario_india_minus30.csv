@@ -1,0 +1,96 @@
+product_name,status,baseline_month,coverage,confidence,baseline_price,model_baseline_price,predicted_price,price_delta_pct,predicted_volume,baseline_risk,baseline_risk_score,risk_score,risk
+Akabary_Chilly,ok,month 10,india: sourced in 2/5 months,india: low-confidence,450.0,432.3138823314541,432.3138823314541,0.0,13030.5,Low,0.2789509412593284,0.2688535486847917,Low
+Amala,ok,month 10,india: sourced in 8/9 months,india: reliable,145.0,142.13627157310393,127.833366281747,-10.062811647624093,11166.3125,Low,0.06328431841000266,0.5474632382882713,Medium
+Apple,ok,month 10,india: sourced in 6/10 months,india: reliable,266.3,254.20447482992523,255.38683981927568,0.46512359396564396,413769.31666666665,Medium,0.5806143981242227,0.44599901365380845,Medium
+Apple_Fuji,no_applicable_shock,month 10,india: never sourced (7 months present),,,,,,,,,,
+Arum,ok,month 10,india: sourced in 5/10 months,india: reliable,65.0,66.93726179632115,71.79911069405824,7.263292174291314,4483.5599999999995,Low,0.31276299418910714,0.4204771098130721,Medium
+Avocado,ok,month 10,india: sourced in 9/10 months,india: reliable,757.61,392.0405218434537,392.0405218434537,0.0,3521.0,Medium,0.5424266631239841,0.5424266631239841,Medium
+Bakula,no_applicable_shock,month 10,india: never sourced (4 months present),,,,,,,,,,
+Bambooshoot,no_applicable_shock,month 10,india: never sourced (7 months present),,,,,,,,,,
+Banana,no_applicable_shock,month 10,india: never sourced (7 months present),,,,,,,,,,
+Banana_Green,ok,month 10,india: sourced in 10/10 months,india: reliable,175.15,186.42151440392954,189.61025601437737,1.7105008617935624,293080.5,Low,0.1476481605405991,0.2113512288112243,Low
+Barela,ok,month 10,india: sourced in 1/9 months,india: single-observation,100.0,95.8730202239001,95.93541778536677,0.06508354625831547,34323.0,Low,0.1591954393684317,0.13951279778822298,Low
+Bayar,ok,month 10,india: sourced in 5/7 months,india: reliable,110.0,109.39514786306208,108.47945927306402,-0.8370468049865298,15018.499999999998,Low,0.14185912931789516,0.6063943464691907,Medium
+Beat_Chukunder,ok,month 10,india: sourced in 10/10 months,india: reliable,100.0,97.14465897528123,98.75652047502808,1.6592384149055395,38352.17,Low,0.24859671801068545,0.2206488110853753,Low
+Bitter_Gourd,ok,month 10,india: sourced in 7/10 months,india: reliable,65.0,102.99274413067462,105.09278882637203,2.0390219849205415,202892.8,Low,0.239927169887926,0.261278730667059,Low
+Bottle_Gourd,ok,month 10,india: sourced in 10/10 months,india: reliable,62.17,87.53969779089199,87.56192469495797,0.025390656612800377,168752.81,Low,0.19996609962567582,0.1727599077507062,Low
+Brinjal_Gland,no_applicable_shock,"month 7 (fallback, no month-10 data)",india: never sourced (4 months present),,,,,,,,,,
+Brinjal_Long,ok,month 10,india: sourced in 9/10 months,india: reliable,81.3,84.71740773017312,84.42931589936612,-0.3400621413305993,139110.6888888889,Low,0.14010588116852027,0.12469740475715928,Low
+Broad_Leaf_Mustard,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Broccoli,ok,month 10,india: sourced in 1/9 months,india: single-observation,78.26,94.78854681140469,95.04924164032525,0.27502777254224675,34800.0,Low,0.23436588937780128,0.2296364529019962,Low
+Cabbage,ok,month 10,india: sourced in 4/10 months,india: reliable,37.39,43.051040909723845,45.86274056974959,6.5310840356259,228483.5,Low,0.14029702934064459,0.14836821194068198,Low
+Cabbage_Red,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Carrot,ok,month 10,india: sourced in 6/10 months,india: reliable,46.74,43.81002256506968,43.99859438074889,0.4304307659260598,139996.0833333333,Low,0.17156580670610075,0.19852608282839654,Low
+Cauliflower_Hill,ok,month 10,india: sourced in 2/10 months,india: low-confidence,67.39,67.68784151790761,67.63775298881555,-0.073999300271399,260985.5,Low,0.17035886318861648,0.16241658705552414,Low
+Chilly_Green,ok,month 10,india: sourced in 8/10 months,india: reliable,130.22,129.1952093414153,130.17907456412624,0.7615338275515526,147892.55,Low,0.23163998073280742,0.20316848687742464,Low
+Christophine,ok,month 10,india: sourced in 5/10 months,india: reliable,65.0,64.64997049887234,65.74288374437303,1.69050849840644,13049.0,Medium,0.3724595787980324,0.3540981192506696,Medium
+Coconut,ok,month 10,india: sourced in 10/10 months,india: reliable,155.0,158.15157388923697,157.68356625157767,-0.2959234778068476,64312.85,Medium,0.5152863628997545,0.5152863628997545,Medium
+Coriander_Green,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Cow_Pea,ok,month 10,india: sourced in 9/10 months,india: reliable,91.3,118.55866320588353,118.25324709338344,-0.2576075878737982,138893.26666666666,Low,0.2278485186635147,0.19208710026008302,Low
+Cress_Leaf,no_applicable_shock,month 10,india: never sourced (9 months present),,,,,,,,,,
+Cucumber,ok,month 10,india: sourced in 7/10 months,india: reliable,74.78,68.53110667799305,68.42735253640633,-0.15139714885129552,325046.5,Low,0.1597189199636946,0.1705409020802115,Low
+Dragon_Fruits,ok,month 10,india: sourced in 9/10 months,india: reliable,325.0,325.9693436735434,330.57771780732224,1.413744642930026,8714.888888888889,Medium,0.37572463963608926,0.37219452820714094,Medium
+Fenugreek_Leaf,no_applicable_shock,month 10,india: never sourced (8 months present),,,,,,,,,,
+French_Bean,ok,month 10,india: sourced in 5/10 months,india: reliable,108.91,100.45522416306558,100.12635760134029,-0.3273762658589585,197436.0,Low,0.12643513686959262,0.12400213813661141,Low
+Garlic_Dry,ok,month 10,india: sourced in 3/8 months,india: low-confidence,120.0,125.17315688475097,126.69919195889385,1.2191392404906187,6609.666666666666,Low,0.2084587630341297,0.1855415577239356,Low
+Garlic_Green,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Ginger,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Grapes,ok,month 10,india: sourced in 8/10 months,india: reliable,450.0,253.40370640597308,260.8922390407336,2.955178809722425,78884.625,Medium,0.4362254319342762,0.4362254319342762,Medium
+Green_Peas,ok,month 10,india: sourced in 4/9 months,india: reliable,110.87,108.48375213783001,103.98371678849293,-4.14811919818161,61828.5,Low,0.11934678626078003,0.17411227896897646,Low
+Green_Ve,no_applicable_shock,month 10,india: never sourced (9 months present),,,,,,,,,,
+Guava,ok,month 10,india: sourced in 9/10 months,india: reliable,180.22,177.80352463985483,167.91789619908016,-5.55986078498626,22231.61111111111,Low,0.11567562920853054,0.5867567213871672,Medium
+Gundruk,ok,month 10,india: sourced in 2/9 months,india: low-confidence,300.0,300.3835837007715,294.61123188929696,-1.9216602120389892,93364.25,Low,0.33333333320611336,0.7499999993853542,High
+Haluwabed,ok,month 10,india: sourced in 7/8 months,india: reliable,300.0,295.1520364365612,297.79570401481027,0.8956968788583097,5922.0,Medium,0.3994574879946361,0.3994574879946361,Medium
+Jack_Fruit,ok,month 10,india: sourced in 5/7 months,india: reliable,90.0,98.45227073261647,108.06084551271334,9.759627389593195,16456.7,Medium,0.38086234982424305,0.29403630200781117,Low
+Khasa_Garlic_Dry,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Kiwi,ok,month 10,india: sourced in 4/10 months,india: reliable,350.0,327.4998558765411,326.211367208584,-0.3934318274762316,4516.0,Medium,0.5422708348897244,0.40765545041931023,Medium
+Kurilo,no_applicable_shock,"month 9 (fallback, no month-10 data)",india: never sourced (8 months present),,,,,,,,,,
+Lemon,ok,month 10,india: sourced in 10/10 months,india: reliable,363.04,323.3555495177928,323.3555495177928,0.0,112857.84999999999,Medium,0.5690802252343202,0.5690802252343202,Medium
+Malta,ok,month 10,india: sourced in 10/10 months,india: reliable,240.0,240.4187878094331,238.63320483003454,-0.7426969396476135,20272.9,Medium,0.4266340845377799,0.4266340845377799,Medium
+Mango,ok,month 10,india: sourced in 10/10 months,india: reliable,198.26,315.16637112033516,323.5253194498582,2.6522335805718056,44844.38,High,0.7277836903883336,0.7277836903883336,High
+Mango_Green,ok,month 10,india: sourced in 1/1 months,india: single-observation,95.0,128.42429966331704,133.8608530268749,4.233274682291888,18333.0,Medium,0.666666665974359,0.666666665974359,Medium
+Mombin,no_applicable_shock,"month 7 (fallback, no month-10 data)",india: never sourced (6 months present),,,,,,,,,,
+Mushroom,ok,month 10,india: sourced in 1/10 months,india: single-observation,219.35,188.19067124184676,188.19067124184676,0.0,31303.0,Low,0.10468426104513652,0.08359008806741675,Low
+Okara,ok,month 10,india: sourced in 9/10 months,india: reliable,85.22,106.86930230716828,109.2912435027795,2.2662646272827436,174558.25555555554,Low,0.19359362246457532,0.21298745559115115,Low
+Onion_Dry,ok,month 10,india: sourced in 9/10 months,india: reliable,45.0,45.073570452630534,45.073570452630534,0.0,267744.1666666667,Medium,0.55412959796008,0.55412959796008,Medium
+Onion_Green,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Orange,ok,month 10,india: sourced in 9/10 months,india: reliable,209.57,176.0853997536666,174.69002274559028,-0.7924433314904888,96858.33333333333,Medium,0.49366268774940636,0.49366268774940636,Medium
+Orange_Sweet,ok,month 10,india: sourced in 7/10 months,india: reliable,110.0,110.09169199425524,109.2640507650622,-0.751774465630195,2975.0,Low,0.18664514022994239,0.639983854653226,Medium
+Papaya,ok,month 10,india: sourced in 10/10 months,india: reliable,100.0,95.24386948335751,95.39628946893365,0.1600312822262584,111298.75,Medium,0.3604800505402798,0.3473750268746844,Medium
+Peanuts,ok,"month 7 (fallback, no month-10 data)",india: sourced in 2/2 months,india: low-confidence,220.0,204.65791532938255,204.65791532938255,0.0,3157.0,Medium,0.666666665974359,0.666666665974359,Medium
+Pear,ok,month 10,india: sourced in 6/9 months,india: reliable,205.0,204.96766637002366,204.55406966343563,-0.20178631777042488,24768.666666666668,Medium,0.4758003274382747,0.4758003274382747,Medium
+Pear_China,no_applicable_shock,"month 5 (fallback, no month-10 data)",india: never sourced (3 months present),,,,,,,,,,
+Pine_Apple,ok,month 10,india: sourced in 10/10 months,india: reliable,188.91,170.56835698874715,168.4780194241706,-1.2255131030631028,43541.75,Medium,0.5918939801534174,0.5918939801534174,Medium
+Pointed_Gourd,ok,month 10,india: sourced in 9/9 months,india: reliable,119.55,120.1053641184551,125.88213788226096,4.809755006536154,37680.9,Low,0.29149510053278427,0.2356857870739713,Low
+Pomegranate,ok,month 10,india: sourced in 10/10 months,india: reliable,325.0,323.29328479566806,323.3555495177928,0.019259516065761595,96429.2,Medium,0.5182904485671304,0.5182904485671304,Medium
+Potato,ok,"month 6 (fallback, no month-10 data)",india: sourced in 1/1 months,india: single-observation,32.84,86.63265146951214,86.93511444580915,0.3491327705737568,224119.0,Low,0.3140688335900391,0.29328297517373003,Low
+Potato_Blue,no_applicable_shock,"month 9 (fallback, no month-10 data)",india: never sourced (6 months present),,,,,,,,,,
+Potato_R,ok,month 10,india: sourced in 9/9 months,india: reliable,32.5,37.35910067736063,37.35910067736063,0.0,351065.26666666666,Low,0.18087834647678394,0.19489734196944156,Low
+Potato_W,no_applicable_shock,"month 9 (fallback, no month-10 data)",india: never sourced (7 months present),,,,,,,,,,
+Pumpkin,ok,month 10,india: sourced in 10/10 months,india: reliable,54.13,53.64823808627273,52.59683270354158,-1.9598134444608672,47863.35,Low,0.27955790852607526,0.24878623503706923,Low
+Pumpkin_Green,ok,month 10,india: sourced in 5/10 months,india: reliable,52.39,53.0014551887848,53.0014551887848,0.0,146145.8,Low,0.09881350663657329,0.09288199039556236,Low
+Pumpkin_Leaf,ok,month 10,india: sourced in 2/7 months,india: low-confidence,70.0,70.4957054715826,71.03899490141265,0.7706702503304408,2417.25,Low,0.20320896673534605,0.18907501132976018,Low
+Radish_Red,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Radish_White,ok,month 10,india: sourced in 3/10 months,india: low-confidence,42.28,42.29427308580901,44.43986249842916,5.073002220104494,184202.66666666666,Low,0.1032022399799608,0.10316459563948747,Low
+Rajma,ok,month 10,india: sourced in 3/9 months,india: low-confidence,124.6,125.51168965177801,133.23362807985296,6.152365926631087,18231.666666666664,Low,0.1565423911315001,0.2192148216353874,Low
+Red_Grapes,no_applicable_shock,month 10,india: never sourced (8 months present),,,,,,,,,,
+Sajiwan,ok,month 10,india: sourced in 6/9 months,india: reliable,250.0,249.35606141432996,247.3350350152238,-0.8104982039109143,3133.833333333333,Medium,0.3347375165247216,0.34678352111780053,Medium
+Sarifa,ok,"month 6 (fallback, no month-10 data)",india: sourced in 2/4 months,india: low-confidence,325.0,269.2391800422863,260.25277967943833,-3.337701578736263,896.0,Low,0.0,0.666666665974359,Medium
+Smooth_Gourd,ok,month 10,india: sourced in 3/10 months,india: low-confidence,78.26,87.35597138141469,87.91934377110677,0.644915717589889,147307.0,Low,0.19384507240755788,0.1967699114479809,Low
+Snake_Gourd,ok,month 10,india: sourced in 2/9 months,india: low-confidence,90.0,91.44628657823347,92.1323109264226,0.7501937736993147,51511.25,Low,0.09735409873773934,0.08826660479116505,Low
+Soya_Bean_Green,no_applicable_shock,"month 4 (fallback, no month-10 data)",india: never sourced (4 months present),,,,,,,,,,
+Spinach_Leaf,no_applicable_shock,month 10,india: never sourced (10 months present),,,,,,,,,,
+Sponge_Gourd,no_applicable_shock,"month 9 (fallback, no month-10 data)",india: never sourced (5 months present),,,,,,,,,,
+Squash,ok,month 10,india: sourced in 1/10 months,india: single-observation,37.93,41.059762341747316,40.46663422269624,-1.4445483490975075,100526.0,Low,0.23545348949239833,0.21743933371521987,Low
+Strawberry,ok,month 10,india: sourced in 5/6 months,india: reliable,550.0,433.293525471664,433.293525471664,0.0,1034.6,Medium,0.5524504467962734,0.5524504467962734,Medium
+Sugarcane,ok,month 10,india: sourced in 7/10 months,india: reliable,165.0,165.06606396401313,165.53725278269357,0.28545468848348854,10283.0,Medium,0.37565218620664437,0.2834125675209477,Low
+Sweet_Pepper,ok,month 10,india: sourced in 9/10 months,india: reliable,124.78,124.36087874209478,109.53170008844857,-11.924311571004276,107424.13333333333,Low,0.2448249034363718,0.20287945113003417,Low
+Sweet_Potato,ok,month 10,india: sourced in 7/8 months,india: reliable,30.0,94.69854711823778,98.99748858301284,4.539606567994681,101103.99999999999,Medium,0.5261317456003382,0.547461806968755,Medium
+Sword_Bean,ok,month 10,india: sourced in 5/7 months,india: reliable,150.0,100.31690664598865,94.40414298310193,-5.894084916067488,33339.6,Low,0.130815720638772,0.2246874572755057,Low
+Tomato,ok,"month 3 (fallback, no month-10 data)",india: sourced in 1/1 months,india: single-observation,84.86,81.98651734104142,83.37177140636297,1.6896120365245793,521394.0,Low,0.06329459988056296,0.049244200629742156,Low
+Tomato_Big,no_applicable_shock,month 10,india: never sourced (7 months present),,,,,,,,,,
+Tomato_Small,ok,month 10,india: sourced in 9/10 months,india: reliable,69.39,69.05899783765828,66.44937767535913,-3.778827153608233,655206.9444444445,Low,0.22414379502370124,0.2171038303432917,Low
+Turnip,no_applicable_shock,month 10,india: never sourced (9 months present),,,,,,,,,,
+Walnut,no_applicable_shock,"month 3 (fallback, no month-10 data)",india: never sourced (1 months present),,,,,,,,,,
+Watermelon,ok,month 10,india: sourced in 10/10 months,india: reliable,41.63,46.316152165619904,45.1804174807649,-2.452135230909891,691988.2,Medium,0.37723659610633725,0.271675621515406,Low
+Yam,ok,month 10,india: sourced in 2/8 months,india: low-confidence,110.0,110.03397842895984,111.92480253966919,1.7184002048331815,8744.0,Medium,0.37051372368344376,0.43943790900034085,Medium
